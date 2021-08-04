@@ -65,14 +65,15 @@ async function addUser(userParam) {
 
 // TODO: complete this function. It takes in calories and minute goal values in 'values' and saves it for a given userid (_id). Hint: use 'updateOne' from mongoose.
 async function setGoals(values, userid){
-
-
+    const user = await User.findOne({ _id:userid });
+    await user.updateOne({}, { caloriegoal: values.caloriegoal });
+    await user.updateOne({}, { minutegoal: values.minutegoal });
 }
 
 
 // TODO: complete this function. It should return calorie and minute goals for a given user.
 async function getGoals(username){
-
-
+    const user = await User.findOne({ username:username });
+    return {caloriegoal: user.caloriegoal, minutegoal: user.minutegoal};
 }
 
