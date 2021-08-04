@@ -18,7 +18,7 @@ const secret = config.secret;
 
 
 async function isRevoked(req, payload, done) {
-   // console.log("isRevoked():", req.body, payload);
+    console.log("isRevoked():", req.body, payload);
 
     const user = await userService.getByUsername(payload.sub);
 

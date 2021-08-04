@@ -42,5 +42,6 @@ function getGoals(req, res, next) {
 
 //TODO: set goals (calorie goal and minute goal) for a user. Hint: write a middleware function and add it to the module exports.
 function setGoals(req, res, next) {
-    console.log("setGoals", req.body)
+    console.log("setGoals")
+    userService.setGoals({caloriegoal: req.body.caloriegoal, minutegoal: req.body.minutegoal}, req.body._id).then(() => res.json({})).catch(err => next(err))
 }
