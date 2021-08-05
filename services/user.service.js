@@ -68,6 +68,7 @@ async function setGoals(values, userid){
     const user = await User.findOne({ userid });
     await user.updateOne({ caloriegoal: values.caloriegoal });
     await user.updateOne({ minutegoal: values.minutegoal });
+    await user.save();
 }
 
 

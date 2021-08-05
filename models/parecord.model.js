@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 //https://mongoosejs.com/docs/populate.html#populate_an_existing_mongoose_document
 
 
-//TODO: notice that the goals are missing from this schema.
+// notice that the goals are missing from this schema.
 const schema = new Schema({
     calories: { type: Number, required: true },
     minutes: { type: Number, required: true },
