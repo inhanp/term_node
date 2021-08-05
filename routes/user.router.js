@@ -8,7 +8,7 @@ const authorize = require('../_helpers/authorize');
 router.post('/authenticate', userController.authenticate);
 router.post('/register', userController.register);
 router.get('/allusers', authorize(Role.admin),userController.getAllUsers);
-//TODO: add the needed routing for setting and getting user goal values. Hint: '/getgoals/:username' Hint2: '/setgoals'
+// add the needed routing for setting and getting user goal values. Hint: '/getgoals/:username' Hint2: '/setgoals'
 router.get('/getgoals/:username', userController.getGoals);
 router.post('/setgoals', userController.setGoals);
 

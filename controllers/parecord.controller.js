@@ -8,6 +8,7 @@ module.exports = {
 
 
 function createPArecord(req, res, next) {
+    parecordService.addPArecord(req.body, req.user.username)
   //TODO: via parecordSerice you should add a PA record and respond to the client confirming that the record was successfully added.
 
 
@@ -15,6 +16,7 @@ function createPArecord(req, res, next) {
 
 function getPArecords(req,res,next){
 //TODO: return all parecords from the database and send to the client.
+    parecordService.getAllPArecords()
     }
 
 
