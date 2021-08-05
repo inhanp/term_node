@@ -34,14 +34,12 @@ function register(req, res, next) {
 
 
 
-//TODO: get goals (calorie goal and minute goal) for the specific username in 'req.params...' and send the JSON back the to the user that requested the information. Hint: write a middleware function and add it to the exports.
+// get goals (calorie goal and minute goal) for the specific username in 'req.params...' and send the JSON back the to the user that requested the information. Hint: write a middleware function and add it to the exports.
 function getGoals(req, res, next) {
-    console.log("getGoals", req.body)
-    userService.getGoals(req.user.username).then().catch(err => next(err));
+    userService.getGoals(req.params.username).then(user => res.json(user)).catch(err => next(err));
 }
 
-//TODO: set goals (calorie goal and minute goal) for a user. Hint: write a middleware function and add it to the module exports.
+// set goals (calorie goal and minute goal) for a user. Hint: write a middleware function and add it to the module exports.
 function setGoals(req, res, next) {
-    console.log("setGoals")
-    userService.setGoals(req.body, req.user.sub).then(() => res.json()).catch(err => next(err))
+    userService.setGoals(req.body, req.user.sub).then(user => res.json(user)).catch(err => next(err));
 }
