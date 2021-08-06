@@ -21,7 +21,7 @@ function getPArecords(req,res,next){
 
 
 function deletePArecord(req,res,next){
-    parecordService.deletePArecord(req.params.date).then(parecord => res.json(parecord)).catch(err => next(err))
+    parecordService.deletePArecord(req.params.date, req.user.sub).then(parecord => res.json(parecord)).catch(err => next(err))
 // delete parecord from the database and respond to the client by conforming the action.
 
 }

@@ -39,6 +39,13 @@ async function addPArecord(parecord, username) {
 
 }
 
-async function deletePArecord(date) {
-    await PArecord.findOne({ createdDate: date }).remove()
+async function deletePArecord(date, userId) {
+    record = await PArecord.findOne({ createdDate: date });
+    if (userId == record.createdBy) {
+        record.remove();
+        return 1;
+    }
+    else {
+        return 0;
+    }
 }

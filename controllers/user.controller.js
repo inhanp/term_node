@@ -46,6 +46,5 @@ function setGoals(req, res, next) {
 }
 
 function find(req, res, next) {
-    console.log(req.params.userId)
     userService.find(req.params.userId).then(user => res.json(user)).catch(err => next(err));
 }
