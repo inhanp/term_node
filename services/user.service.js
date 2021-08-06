@@ -12,7 +12,8 @@ module.exports = {
     getByUsername,
     addUser,
     setGoals,
-    getGoals
+    getGoals,
+    find
 }
 
 async function authenticate({ username, password }) {
@@ -77,3 +78,7 @@ async function getGoals(username){
     return {goals: {caloriegoal: user.caloriegoal, minutegoal: user.minutegoal}};
 }
 
+async function find(userId) {
+    const user = await User.findOne({ _id: userId});
+    return user.username;
+}

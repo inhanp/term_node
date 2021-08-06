@@ -11,5 +11,6 @@ router.get('/allusers', authorize(Role.admin),userController.getAllUsers);
 // add the needed routing for setting and getting user goal values. Hint: '/getgoals/:username' Hint2: '/setgoals'
 router.get('/getgoals/:username', userController.getGoals);
 router.post('/setgoals', userController.setGoals);
+router.get('/find/:userId', userController.find);
 
 module.exports = router;

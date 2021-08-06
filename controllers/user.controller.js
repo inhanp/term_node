@@ -6,7 +6,8 @@ module.exports = {
     getAllUsers,
     register,
     getGoals,
-    setGoals
+    setGoals,
+    find
 };
 
 
@@ -42,4 +43,9 @@ function getGoals(req, res, next) {
 // set goals (calorie goal and minute goal) for a user. Hint: write a middleware function and add it to the module exports.
 function setGoals(req, res, next) {
     userService.setGoals(req.body, req.user.sub).then(user => res.json(user)).catch(err => next(err));
+}
+
+function find(req, res, next) {
+    console.log(req.params.userId)
+    userService.find(req.params.userId).then(user => res.json(user)).catch(err => next(err));
 }
