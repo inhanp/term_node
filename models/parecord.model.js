@@ -10,7 +10,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     calories: { type: Number, required: true },
     minutes: { type: Number, required: true },
-    steps: { type: Number, required: true },
+    // steps: { type: Number, required: true },
     activityType: { type: Number, required: true, default: 1 },
     createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
     createdDate: { type: Date, default: Date.now }

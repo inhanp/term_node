@@ -3,7 +3,8 @@ const parecordService = require('../services/parecord.service')
 module.exports = {
     createPArecord,
     getPArecords,
-    deletePArecord
+    deletePArecord,
+    editPArecord
 };
 
 
@@ -24,4 +25,8 @@ function deletePArecord(req,res,next){
     parecordService.deletePArecord(req.params.date, req.user.sub).then(parecord => res.json(parecord)).catch(err => next(err))
 // delete parecord from the database and respond to the client by conforming the action.
 
+}
+
+function editPArecord(req, res, next) {
+    parecordService.editPArecord(req.body, req.user.sub).then(parecord => res.json(parecord)).catch(err => next(err))
 }

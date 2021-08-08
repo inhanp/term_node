@@ -5,7 +5,8 @@ const PArecord = db.PArecord;
 module.exports = {
     getAllPArecords,
     addPArecord,
-    deletePArecord
+    deletePArecord,
+    editPArecord
 }
 
 
@@ -48,4 +49,12 @@ async function deletePArecord(date, userId) {
     else {
         return 0;
     }
+}
+
+async function editPArecord(parecord, username) {
+    let newrecord = parecord;
+    parecord.createdBy = username;
+    parecord.createdDate = parecord.date;
+    dbrecord = new PArecord(newrecord);
+    await dbrecord.save();
 }
