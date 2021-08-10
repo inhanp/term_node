@@ -6,7 +6,8 @@ module.exports = {
     getAllPArecords,
     addPArecord,
     deletePArecord,
-    editPArecord
+    editPArecord,
+    averagePArecord
 }
 
 
@@ -52,9 +53,45 @@ async function deletePArecord(date, userId) {
 }
 
 async function editPArecord(parecord, username) {
-    let newrecord = parecord;
-    parecord.createdBy = username;
-    parecord.createdDate = parecord.date;
-    dbrecord = new PArecord(newrecord);
-    await dbrecord.save();
+    if (! await PArecord.findOne({ createdBy: username, createdDate: parecord.date  })) {
+        let newrecord = parecord;
+        parecord.createdBy = username;
+        parecord.createdDate = parecord.date;
+        parecord.activityType = parecord.type;
+        dbrecord = new PArecord(newrecord);
+        await dbrecord.save();
+    }
+    else {
+        const record = await PArecord.findOne({ createdBy: username, createdDate: parecord.date  });
+        await record.updateOne({calories: parecord.calories});
+    }
+}
+
+async function averagePArecord(username) {
+    console.log(username)
+    user = await db.User.findOne({ username: username});
+    records = await PArecord.find({ createdBy: user.id});
+    let average = {};
+    let calories = 0;
+    let minutes = 0;
+    num = 0;
+    records.forEach(record => {
+        calories += record.calories;
+        minutes += record.minutes;
+        num++;
+    })
+    if (num !== 0) {
+        average.avgcalories = Math.round(calories / num);
+        average.avgminutes = Math.round(minutes / num);
+    }
+    else {
+        average.avgcalories = 0;
+        average.avgminutes = 0;
+    }
+    average.username = user.username;
+    average.first = user.firstName;
+    average.last = user.lastName;
+    average.calgoal = user.caloriegoal;
+    average.minutegoal = user.minutegoal;
+    return average;
 }
