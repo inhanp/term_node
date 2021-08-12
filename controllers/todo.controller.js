@@ -7,7 +7,7 @@ module.exports = {
 }
 
 function getAllTodos(req, res, next) {
-    todoService.getAllTodos().then(todos => res.json(todos)).catch(err => next(err))
+    todoService.getAllTodos(req.user.sub).then(todos => res.json(todos)).catch(err => next(err))
 }
 
 function addTodo(req, res, next) {

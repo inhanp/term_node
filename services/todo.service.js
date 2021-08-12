@@ -8,8 +8,8 @@ module.exports = {
     deleteTodo
 }
 
-async function getAllTodos() {
-    return await Todo.find().select('-hash');
+async function getAllTodos(username) {
+    return await Todo.find({createdBy: username});
 }
 
 async function addTodo(todo, username) {
