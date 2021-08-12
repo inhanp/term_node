@@ -22,6 +22,7 @@ app.use(jwt());
 
 app.use('/user', require('./routes/user.router'));
 app.use('/parecord', require('./routes/parecord.router'));
+app.use('/todo', require('./routes/todo.router'));
 app.use(errorHandler);
 
 
