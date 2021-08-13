@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 
 /*CORS stands for Cross Origin Resource Sharing and allows modern web browsers to be able to send AJAX requests and receive HTTP responses for resource from other domains other that the domain serving the client side application.*/
 const cors = require('cors');
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(jwt());
 
+app.use('/', express.static(path.join(__dirname+'../../term_angular/dist/term')));
 app.use('/user', require('./routes/user.router'));
 app.use('/todo', require('./routes/todo.router'));
 app.use(errorHandler);
